@@ -15,4 +15,69 @@ CHIP Mux16 {
 
     PARTS:
     // Put your code here:
+    Nand(a=sel, b=sel, out=nsel);
+Nand(a=a[0], b=nsel, out=p0);
+Nand(a=sel, b=b[0], out=p20);
+Nand(a=p0, b=p20, out=out[0]);
+
+Nand(a=a[1], b=nsel, out=p1);
+Nand(a=sel, b=b[1], out=p21);
+Nand(a=p1, b=p21, out=out[1]);
+
+Nand(a=a[2], b=nsel, out=p2);
+Nand(a=sel, b=b[2], out=p22);
+Nand(a=p2, b=p22, out=out[2]);
+
+Nand(a=a[3], b=nsel, out=p3);
+Nand(a=sel, b=b[3], out=p23);
+Nand(a=p3, b=p23, out=out[3]);
+
+Nand(a=a[4], b=nsel, out=p4);
+Nand(a=sel, b=b[4], out=p24);
+Nand(a=p4, b=p24, out=out[4]);
+
+Nand(a=a[5], b=nsel, out=p5);
+Nand(a=sel, b=b[5], out=p25);
+Nand(a=p5, b=p25, out=out[5]);
+
+Nand(a=a[6], b=nsel, out=p6);
+Nand(a=sel, b=b[6], out=p26);
+Nand(a=p6, b=p26, out=out[6]);
+
+Nand(a=a[7], b=nsel, out=p7);
+Nand(a=sel, b=b[7], out=p27);
+Nand(a=p7, b=p27, out=out[7]);
+
+Nand(a=a[8], b=nsel, out=p8);
+Nand(a=sel, b=b[8], out=p28);
+Nand(a=p8, b=p28, out=out[8]);
+
+Nand(a=a[9], b=nsel, out=p9);
+Nand(a=sel, b=b[9], out=p29);
+Nand(a=p9, b=p29, out=out[9]);
+
+Nand(a=a[10], b=nsel, out=p10);
+Nand(a=sel, b=b[10], out=p210);
+Nand(a=p10, b=p210, out=out[10]);
+
+Nand(a=a[11], b=nsel, out=p11);
+Nand(a=sel, b=b[11], out=p211);
+Nand(a=p11, b=p211, out=out[11]);
+
+Nand(a=a[12], b=nsel, out=p12);
+Nand(a=sel, b=b[12], out=p212);
+Nand(a=p12, b=p212, out=out[12]);
+
+Nand(a=a[13], b=nsel, out=p13);
+Nand(a=sel, b=b[13], out=p213);
+Nand(a=p13, b=p213, out=out[13]);
+
+Nand(a=a[14], b=nsel, out=p14);
+Nand(a=sel, b=b[14], out=p214);
+Nand(a=p14, b=p214, out=out[14]);
+
+Nand(a=a[15], b=nsel, out=p15);
+Nand(a=sel, b=b[15], out=p215);
+Nand(a=p15, b=p215, out=out[15]);
+
 }
