@@ -9,3 +9,73 @@
 // program clears the screen, i.e. writes "white" in every pixel.
 
 // Put your code here.
+//Using M gives value
+// using A gives us the address
+	
+(START)
+	@SCREEN
+	D=A
+	@i
+	M=D //storing the address as data in 'i'
+	
+	@24575
+	D=A
+	@j
+	M=D //storing the address as data in 'j'
+	@KBD
+	M=0
+(DECISION)
+	@KBD
+	D=M
+	@ENDWHITE
+	D;JGT
+	
+
+//whitening the screen
+(LOOPWHITE)
+	@i
+	D=M
+	@j
+	D=D-M
+	@ENDWHITE
+	D;JGE
+	@i
+	A=M
+	M=0
+	@i
+	M=M+1
+
+	
+	(LOOPWHITE)
+	0;JMP
+(ENDWHITE)
+
+
+	@SCREEN
+	D=A
+	@i
+	M=D //storing the address as data in 'i'
+	
+	@24575
+	D=A
+	@j
+	M=D //storing the address as data in 'j'
+
+//blacking the screen
+(LOOPFOR)
+	@i
+	D=M
+	@j
+	D=D-M
+	@ENDFOR
+	D;JGE
+	@i
+	A=M
+	M=-1
+	@i
+	M=M+1
+	(LOOPFOR)
+	0;JMP
+(ENDFOR)
+	@DECISION
+	1;JMP
