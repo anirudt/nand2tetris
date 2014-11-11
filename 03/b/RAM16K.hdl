@@ -9,7 +9,7 @@
  * the in value is loaded into the memory location specified by address 
  * (the loaded value will be emitted to out from the next time step onward).
  */
-
+//higher placed bits are of higher value. :D
 
 CHIP RAM16K {
 	IN in[16], load, address[14];
