@@ -40,4 +40,49 @@ CHIP CPU {
 
     PARTS:
     // Put your code here:
+    //First, we parse the type of instruction given.
+    Not(in=instruction[15], out=Ainstruction);
+    Not(in=Ainstruction, out=Cinstruction);
+
+    //If C instruction is there, and there is a particular destination, the dest
+    //bit now has to store the ALU output. Making ammends for that..
+    And(a=Cinstruction, b=instruction[5], out=ALUReadyOut);
+    
+    //Now, the 'A' Register will store the value either if it is 
+    //an A instruction or if it a C instruction with a valid dest.
+    Or(a=Ainstruction, b=ALUReadyOut, out=Aload);
+
+    Mux16(a=instruction, b=ALUOutput, sel=ALUReadyOut, out=AReg);
+    ARegister(in=AReg, load=Aload, out=ARegout);
+
+    //The a-bit decides this. As given on page 95, under instruction execution.
+    Mux16(a=ARegout, b=inM, sel=instruction[12], out=AorM);
+
+    //Decide the following based on fig. 4.4 
+    And(a=Cinstruction, b=instruction[4], out=Dload);
+    DRegister(in=ALUOutput, load=Dload, out=outD);
+
+    //all of these are the c_i's
+    ALU(x=outD, y=AorM, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], no=instruction[6], out=ALUOutput, zr=ZROut, ng=NGout);
+
+    //taking the outputs
+    Or16(a=ALUOutput, b=ALUOutput, out=outM);
+    Or16(a=ARegout, b=ARegout, out[0..14]=addressM);
+    And(a=Cinstruction, b=instruction[3], out=writeM);
+
+    And(a=instruction[2], b=NGout, out=j1);
+    And(a=instruction[1], b=ZROut, out=j2);
+    Or(a=NGout, b=ZROut, out=negorzero);
+    Not(in=negorzero, out=pos);
+    And(a=instruction[0], b=pos, out=j3);
+    Or(a=j1, b=j2, out=k);
+    Or(a=k, b=j3, out=loadjump);
+
+    //Necessary! :D
+    And(a=loadjump, b=Cinstruction, out=loadjumper);
+
+    Not(in=loadjumper, out=inc);
+    PC(in=ARegout, inc=inc, load=loadjumper, reset=reset, out[0..14]=pc);
+
+
 }
