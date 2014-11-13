@@ -6,4 +6,4 @@ A simple implementation of a Computer Architecture as composed by 'The Elements 
 
 #Follow instructions from www.nand2tetris.com
 
--`.hdl`, `.asm' file design
+-`.hdl`, `.asm` file design
